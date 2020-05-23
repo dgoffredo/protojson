@@ -1,0 +1,164 @@
+{
+  "fileToGenerate": [
+    "hello.proto"
+  ],
+  "compilerVersion": {
+    "major": 3,
+    "minor": 11,
+    "patch": 4,
+    "suffix": ""
+  },
+  "protoFile": [
+    {
+      "name": "hello.proto",
+      "messageType": [
+        {
+          "name": "Hello",
+          "field": [
+            {
+              "name": "greeting",
+              "number": 1,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_ENUM",
+              "typeName": ".Greeting",
+              "jsonName": "greeting",
+              "location": {
+                "span": [
+                  16,
+                  4,
+                  26
+                ],
+                "trailingComments": " on the side\n"
+              }
+            },
+            {
+              "name": "name",
+              "number": 2,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING",
+              "jsonName": "name",
+              "location": {
+                "span": [
+                  18,
+                  4,
+                  20
+                ],
+                "leadingComments": " above\n"
+              }
+            }
+          ],
+          "location": {
+            "span": [
+              15,
+              0,
+              19,
+              1
+            ],
+            "leadingComments": " Hello blah blah blah\n",
+            "leadingDetachedComments": [
+              " Are these leading_detached_comments?\n What determines how they're listed?\n",
+              " Maybe like this?\n"
+            ]
+          }
+        }
+      ],
+      "enumType": [
+        {
+          "name": "Greeting",
+          "value": [
+            {
+              "name": "NONE",
+              "number": 0,
+              "location": {
+                "span": [
+                  3,
+                  4,
+                  13
+                ]
+              }
+            },
+            {
+              "name": "MR",
+              "number": 1,
+              "location": {
+                "span": [
+                  4,
+                  4,
+                  11
+                ]
+              }
+            },
+            {
+              "name": "MRS",
+              "number": 2,
+              "location": {
+                "span": [
+                  5,
+                  4,
+                  12
+                ]
+              }
+            },
+            {
+              "name": "MISS",
+              "number": 3,
+              "location": {
+                "span": [
+                  6,
+                  4,
+                  13
+                ],
+                "trailingComments": " we're missing \"MS\"\n"
+              }
+            }
+          ],
+          "location": {
+            "span": [
+              2,
+              0,
+              7,
+              1
+            ]
+          }
+        }
+      ],
+      "service": [
+        {
+          "name": "GreeterService",
+          "method": [
+            {
+              "name": "Greet",
+              "inputType": ".Hello",
+              "outputType": ".Hello",
+              "location": {
+                "span": [
+                  23,
+                  4,
+                  38
+                ],
+                "leadingComments": " Here I document the Greet method.\n"
+              }
+            }
+          ],
+          "location": {
+            "span": [
+              21,
+              0,
+              24,
+              1
+            ]
+          }
+        }
+      ],
+      "syntax": "proto3",
+      "location": {
+        "span": [
+          0,
+          0,
+          24,
+          1
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+enum Greeting {
+    NONE = 0;
+    MR = 1;
+    MRS = 2;
+    MISS = 3;  // we're missing "MS"
+}
+
+// Are these leading_detached_comments?
+// What determines how they're listed?
+
+// Maybe like this?
+
+// Hello blah blah blah
+message Hello {
+    Greeting greeting = 1;  // on the side
+    // above
+    string name = 2;
+}
+
+service GreeterService {
+    // Here I document the Greet method.
+    rpc Greet (Hello) returns (Hello);
+}  // What is this considered?
+// Is this trailing?
+
+// What about this?
+
+// And this?
