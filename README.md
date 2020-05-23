@@ -72,7 +72,7 @@ service GreeterService {
 $ python3 protojson protojson/example/hello.proto | jq '.'
 {
   "fileToGenerate": [
-    "example/hello.proto"
+    "protojson/example/hello.proto"
   ],
   "compilerVersion": {
     "major": 3,
@@ -82,7 +82,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
   },
   "protoFile": [
     {
-      "name": "example/hello.proto",
+      "name": "protojson/example/hello.proto",
       "messageType": [
         {
           "name": "Hello",
