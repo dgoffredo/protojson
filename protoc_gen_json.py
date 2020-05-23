@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""Convert compiled protobuf schemas into JSON
-
-TODO
-"""
+"Convert compiled protobuf schemas into JSON"
 
 import json
 import sys
