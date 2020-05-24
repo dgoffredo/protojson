@@ -46,5 +46,5 @@ $ cat protojson/examples/hello.proto
 include([[[example/hello.proto]]])dnl
 
 $ python3 protojson protojson/example/hello.proto | jq '.'
-esyscmd([[[python3 . example/hello.proto | jq '.']]])dnl
+esyscmd([[[cd ..; python3 protojson protojson/example/hello.proto | jq '.']]])dnl
 ```
