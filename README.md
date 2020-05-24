@@ -1,3 +1,7 @@
+<!-- Do not edit `README.md` directly.  Instead, modify `README.md.m4` and run
+     `make` to regenerate `README.md`.
+  -->
+
 ![](protojson.png)
 
 protojson
@@ -40,6 +44,8 @@ if it were a python script.
 $ cat protojson/examples/hello.proto
 syntax = "proto3";
 
+package sassafras.sassafras;
+
 enum Greeting {
     NONE = 0;
     MR = 1;
@@ -68,11 +74,10 @@ service GreeterService {
 // What about this?
 
 // And this?
-
 $ python3 protojson protojson/example/hello.proto | jq '.'
 {
   "fileToGenerate": [
-    "protojson/example/hello.proto"
+    "example/hello.proto"
   ],
   "compilerVersion": {
     "major": 3,
@@ -82,7 +87,8 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
   },
   "protoFile": [
     {
-      "name": "protojson/example/hello.proto",
+      "name": "example/hello.proto",
+      "package": "sassafras.sassafras",
       "messageType": [
         {
           "name": "Hello",
@@ -92,11 +98,11 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 1,
               "label": "LABEL_OPTIONAL",
               "type": "TYPE_ENUM",
-              "typeName": ".Greeting",
+              "typeName": ".sassafras.sassafras.Greeting",
               "jsonName": "greeting",
               "location": {
                 "span": [
-                  16,
+                  18,
                   4,
                   26
                 ],
@@ -111,7 +117,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "jsonName": "name",
               "location": {
                 "span": [
-                  18,
+                  20,
                   4,
                   20
                 ],
@@ -121,9 +127,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              15,
+              17,
               0,
-              19,
+              21,
               1
             ],
             "leadingComments": " Hello blah blah blah\n",
@@ -143,7 +149,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 0,
               "location": {
                 "span": [
-                  3,
+                  5,
                   4,
                   13
                 ]
@@ -154,7 +160,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 1,
               "location": {
                 "span": [
-                  4,
+                  6,
                   4,
                   11
                 ]
@@ -165,7 +171,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 2,
               "location": {
                 "span": [
-                  5,
+                  7,
                   4,
                   12
                 ]
@@ -176,7 +182,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 3,
               "location": {
                 "span": [
-                  6,
+                  8,
                   4,
                   13
                 ],
@@ -186,9 +192,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              2,
+              4,
               0,
-              7,
+              9,
               1
             ]
           }
@@ -200,11 +206,11 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           "method": [
             {
               "name": "Greet",
-              "inputType": ".Hello",
-              "outputType": ".Hello",
+              "inputType": ".sassafras.sassafras.Hello",
+              "outputType": ".sassafras.sassafras.Hello",
               "location": {
                 "span": [
-                  23,
+                  25,
                   4,
                   38
                 ],
@@ -214,9 +220,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              21,
+              23,
               0,
-              24,
+              26,
               1
             ]
           }
@@ -227,7 +233,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
         "span": [
           0,
           0,
-          24,
+          26,
           1
         ]
       }
