@@ -24,9 +24,14 @@ def jsonify_path(path, proto_file_message):
     return result
 
 
+def is_listish(message):
+    msgs = google.protobuf.pyext._message
+    classes = [msgs.RepeatedCompositeContainer, msgs.RepeatedScalarContainer]
+    return any(isinstance(message, Listish) for Listish in classes)
+
+
 def jsonify_path_part(part, message):
-    Listy = google.protobuf.pyext._message.RepeatedCompositeContainer
-    if isinstance(message, Listy):
+    if is_listish(message):
         return part, message[part]
 
     for descriptor, value in message.ListFields():

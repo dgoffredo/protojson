@@ -46,6 +46,8 @@ syntax = "proto3";
 
 package sassafras.sassafras;
 
+import "google/protobuf/timestamp.proto";
+
 enum Greeting {
     NONE = 0;
     MR = 1;
@@ -63,6 +65,9 @@ message Hello {
     Greeting greeting = 1;  // on the side
     // above
     string name = 2;
+
+    // I don't know like whatever lol.
+    google.protobuf.Timestamp when = 3;
 }
 
 service GreeterService {
@@ -87,8 +92,86 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
   },
   "protoFile": [
     {
+      "name": "google/protobuf/timestamp.proto",
+      "package": "google.protobuf",
+      "messageType": [
+        {
+          "name": "Timestamp",
+          "field": [
+            {
+              "name": "seconds",
+              "number": 1,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_INT64",
+              "jsonName": "seconds",
+              "location": {
+                "span": [
+                  130,
+                  2,
+                  20
+                ],
+                "leadingComments": " Represents seconds of UTC time since Unix epoch\n 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n 9999-12-31T23:59:59Z inclusive.\n"
+              }
+            },
+            {
+              "name": "nanos",
+              "number": 2,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_INT32",
+              "jsonName": "nanos",
+              "location": {
+                "span": [
+                  136,
+                  2,
+                  18
+                ],
+                "leadingComments": " Non-negative fractions of a second at nanosecond resolution. Negative\n second values with fractions must still have non-negative nanos values\n that count forward in time. Must be from 0 to 999,999,999\n inclusive.\n"
+              }
+            }
+          ],
+          "location": {
+            "span": [
+              126,
+              0,
+              137,
+              1
+            ],
+            "leadingComments": " A Timestamp represents a point in time independent of any time zone or local\n calendar, encoded as a count of seconds and fractions of seconds at\n nanosecond resolution. The count is relative to an epoch at UTC midnight on\n January 1, 1970, in the proleptic Gregorian calendar which extends the\n Gregorian calendar backwards to year one.\n\n All minutes are 60 seconds long. Leap seconds are \"smeared\" so that no leap\n second table is needed for interpretation, using a [24-hour linear\n smear](https://developers.google.com/time/smear).\n\n The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By\n restricting to that range, we ensure that we can convert to and from [RFC\n 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.\n\n # Examples\n\n Example 1: Compute Timestamp from POSIX `time()`.\n\n     Timestamp timestamp;\n     timestamp.set_seconds(time(NULL));\n     timestamp.set_nanos(0);\n\n Example 2: Compute Timestamp from POSIX `gettimeofday()`.\n\n     struct timeval tv;\n     gettimeofday(&tv, NULL);\n\n     Timestamp timestamp;\n     timestamp.set_seconds(tv.tv_sec);\n     timestamp.set_nanos(tv.tv_usec * 1000);\n\n Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.\n\n     FILETIME ft;\n     GetSystemTimeAsFileTime(&ft);\n     UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;\n\n     // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z\n     // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.\n     Timestamp timestamp;\n     timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));\n     timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));\n\n Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.\n\n     long millis = System.currentTimeMillis();\n\n     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)\n         .setNanos((int) ((millis % 1000) * 1000000)).build();\n\n\n Example 5: Compute Timestamp from current time in Python.\n\n     timestamp = Timestamp()\n     timestamp.GetCurrentTime()\n\n # JSON Mapping\n\n In JSON format, the Timestamp type is encoded as a string in the\n [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the\n format is \"{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z\"\n where {year} is always expressed using four digits while {month}, {day},\n {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional\n seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),\n are optional. The \"Z\" suffix indicates the timezone (\"UTC\"); the timezone\n is required. A proto3 JSON serializer should always use UTC (as indicated by\n \"Z\") when printing the Timestamp type and a proto3 JSON parser should be\n able to accept both UTC and other timezones (as indicated by an offset).\n\n For example, \"2017-01-15T01:30:15.01Z\" encodes 15.01 seconds past\n 01:30 UTC on January 15, 2017.\n\n In JavaScript, one can convert a Date object to this format using the\n standard\n [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)\n method. In Python, a standard `datetime.datetime` object can be converted\n to this format using\n [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with\n the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use\n the Joda Time's [`ISODateTimeFormat.dateTime()`](\n http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D\n ) to obtain a formatter capable of generating timestamps in this format.\n\n\n"
+          }
+        }
+      ],
+      "options": {
+        "javaPackage": "com.google.protobuf",
+        "javaOuterClassname": "TimestampProto",
+        "javaMultipleFiles": true,
+        "goPackage": "github.com/golang/protobuf/ptypes/timestamp",
+        "ccEnableArenas": true,
+        "objcClassPrefix": "GPB",
+        "csharpNamespace": "Google.Protobuf.WellKnownTypes",
+        "location": {
+          "span": [
+            40,
+            0,
+            33
+          ]
+        }
+      },
+      "syntax": "proto3",
+      "location": {
+        "span": [
+          30,
+          0,
+          137,
+          1
+        ]
+      }
+    },
+    {
       "name": "protojson/example/hello.proto",
       "package": "sassafras.sassafras",
+      "dependency": [
+        "google/protobuf/timestamp.proto"
+      ],
       "messageType": [
         {
           "name": "Hello",
@@ -102,7 +185,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "jsonName": "greeting",
               "location": {
                 "span": [
-                  18,
+                  20,
                   4,
                   26
                 ],
@@ -117,19 +200,35 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "jsonName": "name",
               "location": {
                 "span": [
-                  20,
+                  22,
                   4,
                   20
                 ],
                 "leadingComments": " above\n"
               }
+            },
+            {
+              "name": "when",
+              "number": 3,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp",
+              "jsonName": "when",
+              "location": {
+                "span": [
+                  25,
+                  4,
+                  39
+                ],
+                "leadingComments": " I don't know like whatever lol.\n"
+              }
             }
           ],
           "location": {
             "span": [
-              17,
+              19,
               0,
-              21,
+              26,
               1
             ],
             "leadingComments": " Hello blah blah blah\n",
@@ -149,7 +248,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 0,
               "location": {
                 "span": [
-                  5,
+                  7,
                   4,
                   13
                 ]
@@ -160,7 +259,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 1,
               "location": {
                 "span": [
-                  6,
+                  8,
                   4,
                   11
                 ]
@@ -171,7 +270,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 2,
               "location": {
                 "span": [
-                  7,
+                  9,
                   4,
                   12
                 ]
@@ -182,7 +281,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "number": 3,
               "location": {
                 "span": [
-                  8,
+                  10,
                   4,
                   13
                 ],
@@ -192,9 +291,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              4,
+              6,
               0,
-              9,
+              11,
               1
             ]
           }
@@ -210,7 +309,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "outputType": ".sassafras.sassafras.Hello",
               "location": {
                 "span": [
-                  25,
+                  30,
                   4,
                   38
                 ],
@@ -220,9 +319,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              23,
+              28,
               0,
-              26,
+              31,
               1
             ]
           }
@@ -233,7 +332,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
         "span": [
           0,
           0,
-          26,
+          31,
           1
         ]
       }

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package sassafras.sassafras;
 
+import "google/protobuf/timestamp.proto";
+
 enum Greeting {
     NONE = 0;
     MR = 1;
@@ -19,6 +21,9 @@ message Hello {
     Greeting greeting = 1;  // on the side
     // above
     string name = 2;
+
+    // I don't know like whatever lol.
+    google.protobuf.Timestamp when = 3;
 }
 
 service GreeterService {
