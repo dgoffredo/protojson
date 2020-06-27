@@ -24,6 +24,11 @@ message Hello {
 
     // I don't know like whatever lol.
     google.protobuf.Timestamp when = 3;
+
+    fixed64 snake_case = 4;
+    fixed64 camelCase = 5;
+    fixed64 SHOUTING_CASE = 6;
+    fixed64 PascalCase = 7;
 }
 
 service GreeterService {

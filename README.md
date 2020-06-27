@@ -68,6 +68,11 @@ message Hello {
 
     // I don't know like whatever lol.
     google.protobuf.Timestamp when = 3;
+
+    fixed64 snake_case = 4;
+    fixed64 camelCase = 5;
+    fixed64 SHOUTING_CASE = 6;
+    fixed64 PascalCase = 7;
 }
 
 service GreeterService {
@@ -222,13 +227,69 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
                 ],
                 "leadingComments": " I don't know like whatever lol.\n"
               }
+            },
+            {
+              "name": "snake_case",
+              "number": 4,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_FIXED64",
+              "jsonName": "snakeCase",
+              "location": {
+                "span": [
+                  27,
+                  4,
+                  27
+                ]
+              }
+            },
+            {
+              "name": "camelCase",
+              "number": 5,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_FIXED64",
+              "jsonName": "camelCase",
+              "location": {
+                "span": [
+                  28,
+                  4,
+                  26
+                ]
+              }
+            },
+            {
+              "name": "SHOUTING_CASE",
+              "number": 6,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_FIXED64",
+              "jsonName": "SHOUTINGCASE",
+              "location": {
+                "span": [
+                  29,
+                  4,
+                  30
+                ]
+              }
+            },
+            {
+              "name": "PascalCase",
+              "number": 7,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_FIXED64",
+              "jsonName": "PascalCase",
+              "location": {
+                "span": [
+                  30,
+                  4,
+                  27
+                ]
+              }
             }
           ],
           "location": {
             "span": [
               19,
               0,
-              26,
+              31,
               1
             ],
             "leadingComments": " Hello blah blah blah\n",
@@ -309,7 +370,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
               "outputType": ".sassafras.sassafras.Hello",
               "location": {
                 "span": [
-                  30,
+                  35,
                   4,
                   38
                 ],
@@ -319,9 +380,9 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
           ],
           "location": {
             "span": [
-              28,
+              33,
               0,
-              31,
+              36,
               1
             ]
           }
@@ -332,7 +393,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
         "span": [
           0,
           0,
-          31,
+          36,
           1
         ]
       }
