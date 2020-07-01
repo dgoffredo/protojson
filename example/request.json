@@ -97,7 +97,7 @@
                         {
                             "name": "greeting",
                             "number": 1,
-                            "label": "LABEL_OPTIONAL",
+                            "label": "LABEL_REPEATED",
                             "type": "TYPE_ENUM",
                             "typeName": ".sassafras.sassafras.Greeting",
                             "jsonName": "greeting",
@@ -105,7 +105,7 @@
                                 "span": [
                                     20,
                                     4,
-                                    26
+                                    35
                                 ],
                                 "trailingComments": " on the side\n"
                             }

@@ -18,7 +18,7 @@ enum Greeting {
 
 // Hello blah blah blah
 message Hello {
-    Greeting greeting = 1;  // on the side
+    repeated Greeting greeting = 1;  // on the side
     // above
     string name = 2;
 

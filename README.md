@@ -62,7 +62,7 @@ enum Greeting {
 
 // Hello blah blah blah
 message Hello {
-    Greeting greeting = 1;  // on the side
+    repeated Greeting greeting = 1;  // on the side
     // above
     string name = 2;
 
@@ -184,7 +184,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
             {
               "name": "greeting",
               "number": 1,
-              "label": "LABEL_OPTIONAL",
+              "label": "LABEL_REPEATED",
               "type": "TYPE_ENUM",
               "typeName": ".sassafras.sassafras.Greeting",
               "jsonName": "greeting",
@@ -192,7 +192,7 @@ $ python3 protojson protojson/example/hello.proto | jq '.'
                 "span": [
                   20,
                   4,
-                  26
+                  35
                 ],
                 "trailingComments": " on the side\n"
               }
