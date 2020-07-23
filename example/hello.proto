@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package sassafras.sassafras;
 
+option go_package = "blah/blah/blah;blah";
+
 import "google/protobuf/timestamp.proto";
 
 enum Greeting {
